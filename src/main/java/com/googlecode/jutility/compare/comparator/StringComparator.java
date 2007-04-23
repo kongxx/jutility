@@ -1,4 +1,4 @@
-package com.google.jutility.compare.comparator;
+package com.googlecode.jutility.compare.comparator;
 
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.WrapDynaBean;

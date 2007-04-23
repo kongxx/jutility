@@ -1,4 +1,4 @@
-package com.google.jutility.compare.comparator;
+package com.googlecode.jutility.compare.comparator;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -44,7 +44,7 @@ public class ComparatorFactory {
 	        String fieldType = field.getType().getName();
 	        String className = props.getProperty(fieldType);
 	        if ( className == null) {
-	        	className = com.google.jutility.compare.comparator.GenericComparator.class.getName();
+	        	className = com.googlecode.jutility.compare.comparator.GenericComparator.class.getName();
 	        }
 	        Constructor constructor = Class.forName(className).getConstructor(String.class);
 	        return (BeanComparator)constructor.newInstance(new Object[] { property });

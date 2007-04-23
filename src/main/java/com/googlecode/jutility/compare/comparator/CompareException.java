@@ -1,4 +1,4 @@
-package com.google.jutility.compare.comparator;
+package com.googlecode.jutility.compare.comparator;
 
 public class CompareException extends RuntimeException {
 

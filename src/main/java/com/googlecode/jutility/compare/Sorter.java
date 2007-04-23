@@ -1,4 +1,4 @@
-package com.google.jutility.compare;
+package com.googlecode.jutility.compare;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.jutility.compare.comparator.BeanComparator;
-import com.google.jutility.compare.comparator.ComparatorFactory;
+import com.googlecode.jutility.compare.comparator.BeanComparator;
+import com.googlecode.jutility.compare.comparator.ComparatorFactory;
 
 /**
  * A Sorter that provice sort method to sort a List<Object> collection by a or

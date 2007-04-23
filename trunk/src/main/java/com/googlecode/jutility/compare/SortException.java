@@ -1,4 +1,4 @@
-package com.google.jutility.compare;
+package com.googlecode.jutility.compare;
 
 public class SortException extends RuntimeException {
 

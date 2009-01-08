@@ -14,15 +14,16 @@ public abstract class BeanComparator implements Comparator {
 	 * the property of POJO object.
 	 */
 	protected String property;
-	
+
 	public BeanComparator(String property) {
 		this.property = property;
 	}
-	
+
 	public String getProperty() {
-    	return property;
-    }
+		return property;
+	}
+
 	public void setProperty(String property) {
-    	this.property = property;
-    }
+		this.property = property;
+	}
 }

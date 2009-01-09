@@ -205,16 +205,23 @@ public class Sorter {
 
 	/**
 	 * Get an instance of BeanComparator. It will follow this sequence to get an
-	 * instance of BeanComparator. <li>Get comparator from registered instance
-	 * of BeanComparator.</li> <li>Get comparator from registered Class of
-	 * BeanComparator.</li> <li>Get comparator from definition in
-	 * comparator.properties.</li>
+	 * instance of BeanComparator. 
+	 * <li>
+	 * Get comparator from registered instance
+	 * of BeanComparator.
+	 * </li> 
+	 * <li>
+	 * Get comparator from registered Class of
+	 * BeanComparator.
+	 * </li> 
+	 * <li>
+	 * Get comparator from definition in
+	 * comparator.properties.
+	 * </li>
 	 * 
 	 * @param <T>
-	 * @param clazz
-	 *            the class of object
-	 * @param property
-	 *            the property name of this class
+	 * @param clazz the class of object
+	 * @param property the property name of this class
 	 * @return an instance of BeanComparator
 	 */
 	private <T> BeanComparator getBeanComparator(Class clazz, String property) {

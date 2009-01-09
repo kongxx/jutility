@@ -11,45 +11,50 @@ import java.util.Properties;
  * @author fkong
  */
 public class ComparatorFactory {
-	
+
 	private static ComparatorFactory factory = new ComparatorFactory();
-	
+
 	/**
 	 * A property include the comparator class name
 	 */
-	private Properties props ;
-	
+	private Properties props;
+
 	private ComparatorFactory() {
 		props = new Properties();
 		try {
-			props.load(ComparatorFactory.class.getResourceAsStream("comparator.properties"));
-		} catch(Exception ex) {
+			props.load(ComparatorFactory.class
+					.getResourceAsStream("comparator.properties"));
+		} catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
 	}
-	
+
 	public static ComparatorFactory getInstance() {
 		return factory;
 	}
-	
+
 	/**
-	 * Get an instance of BeanComparator with given Object and property of this Object.
-	 * @param clazz Class instance 
+	 * Get an instance of BeanComparator with given Object and property of this
+	 * Object.
+	 * 
+	 * @param clazz Class instance
 	 * @param property the property of clazz
 	 * @return an instance of BeanComparator
 	 */
 	public <T> BeanComparator getComparator(Class clazz, String property) {
-        try {
-        	Field field = clazz.getDeclaredField(property);
-	        String fieldType = field.getType().getName();
-	        String className = props.getProperty(fieldType);
-	        if ( className == null) {
-	        	className = com.googlecode.jutility.compare.comparator.GenericComparator.class.getName();
-	        }
-	        Constructor constructor = Class.forName(className).getConstructor(String.class);
-	        return (BeanComparator)constructor.newInstance(new Object[] { property });
-        } catch (Exception e) {
-	        throw new RuntimeException(e);
-        }
+		try {
+			Field field = clazz.getDeclaredField(property);
+			String fieldType = field.getType().getName();
+			String className = props.getProperty(fieldType);
+			if (className == null) {
+				className = GenericComparator.class.getName();
+			}
+			Constructor constructor = Class.forName(className).getConstructor(
+					String.class);
+			return (BeanComparator) constructor
+					.newInstance(new Object[] { property });
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

@@ -225,14 +225,21 @@ public class Sorter {
 	 * @return an instance of BeanComparator
 	 */
 	private <T> BeanComparator getBeanComparator(Class clazz, String property) {
-		String fieldType;
-		try {
-			Field field = clazz.getDeclaredField(property);
-			fieldType = field.getType().getName();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		Field field = null;
+		while(true) {
+			try {
+				field = clazz.getDeclaredField(property);
+				break;
+			} catch (NoSuchFieldException ex) {
+				if (clazz.getName().equals("java.lang.Object")) {
+					throw new RuntimeException(ex);
+				}
+				clazz = clazz.getSuperclass();
+				continue;
+			}
 		}
-
+		
+		String fieldType = field.getType().getName();
 		if (comparators.containsKey(fieldType)) {
 			return comparators.get(fieldType);
 		} else if (beanComparatorClasses.containsKey(fieldType)) {

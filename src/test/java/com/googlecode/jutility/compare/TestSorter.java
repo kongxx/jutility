@@ -142,7 +142,39 @@ public class TestSorter {
 		assertEquals("a5", list.get(0).getName());
 		assertEquals("a1", list.get(4).getName());
 	}
+	
+	/**
+	 * Test method for
+	 * {@link com.googlecode.jutility.compare.Sorter#sort(java.util.List, java.lang.String, com.googlecode.jutility.compare.SortOrder)}
+	 * .
+	 */
+	@Test
+	public void testInheritSortListOfTStringArraySortOrder() {
+		List<C> list = new ArrayList<C>();
+		for (int i = 1; i <= 5; i++) {
+			C c = new C();
+			c.setA("a" + i);
+			c.setB("b" + i);
+			c.setC("c" + i);
+			list.add(c);
+		}
 
+		sorter.sort(list, new String[]{"c", "b", "a"}, SortOrder.ASC);
+		assertEquals(5, list.size());
+		for (int i =0; i < list.size(); i++) {
+			assertEquals("a" + (i + 1), list.get(i).getA());
+			assertEquals("b" + (i + 1), list.get(i).getB());
+			assertEquals("c" + (i + 1), list.get(i).getC());
+		}
+		
+		sorter.sort(list, new String[]{"c", "b", "a"}, SortOrder.DESC);
+		for (int i =0; i < list.size(); i++) {
+			assertEquals("a" + (list.size() - i), list.get(i).getA());
+			assertEquals("b" + (list.size() - i), list.get(i).getB());
+			assertEquals("c" + (list.size() - i), list.get(i).getC());
+		}
+	}
+	
 	/**
 	 * Test method for
 	 * {@link com.googlecode.jutility.compare.Sorter#registerBeanComparator(java.lang.Class, java.lang.Class)}
@@ -282,6 +314,41 @@ public class TestSorter {
 			MyType type2 = (MyType) db2.get(property);
 
 			return type1.toString().compareTo(type2.toString());
+		}
+	}
+	
+	public class A {
+		private String a;
+
+		public String getA() {
+			return a;
+		}
+
+		public void setA(String a) {
+			this.a = a;
+		}
+	}
+	public class B extends A {
+		private String b;
+
+		public String getB() {
+			return b;
+		}
+
+		public void setB(String b) {
+			this.b = b;
+		}
+	}
+	
+	public class C extends B {
+		private String c;
+
+		public String getC() {
+			return c;
+		}
+
+		public void setC(String c) {
+			this.c = c;
 		}
 	}
 }

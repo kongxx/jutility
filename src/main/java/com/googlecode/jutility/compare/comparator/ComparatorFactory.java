@@ -42,8 +42,21 @@ public class ComparatorFactory {
 	 * @return an instance of BeanComparator
 	 */
 	public <T> BeanComparator getComparator(Class clazz, String property) {
+		Field field = null;
+		while(true) {
+			try {
+				field = clazz.getDeclaredField(property);
+				break;
+			} catch (NoSuchFieldException ex) {
+				if (clazz.getName().equals("java.lang.Object")) {
+					throw new RuntimeException(ex);
+				}
+				clazz = clazz.getSuperclass();
+				continue;
+			}
+		}
+		
 		try {
-			Field field = clazz.getDeclaredField(property);
 			String fieldType = field.getType().getName();
 			String className = props.getProperty(fieldType);
 			if (className == null) {

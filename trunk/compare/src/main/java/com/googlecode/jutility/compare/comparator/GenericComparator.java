@@ -23,6 +23,16 @@ public class GenericComparator extends BeanComparator {
 		DynaBean dynabean2 = new WrapDynaBean(o2);
 		Object property2 = dynabean2.get(property);
 		
+		if (property1 == null && property2 == null) {
+			return 0;
+		}
+		if(property1 == null && property2 != null) {
+			return -1;
+		}
+		if(property1 != null && property2 == null) {
+			return 1;
+		}
+		
 		int ret = 0;
 		try {
 			Object obj = MethodUtils.invokeMethod(property1, "compareTo", property2);

@@ -18,24 +18,31 @@ import org.apache.commons.beanutils.WrapDynaBean;
  * @author fkong
  */
 public class StringComparator extends BeanComparator {
-	
+
 	public StringComparator(String propertyName) {
-	    super(propertyName);
-    }
+		super(propertyName);
+	}
 
 	public int compare(Object o1, Object o2) {
 		DynaBean db1 = new WrapDynaBean(o1);
-		String s1 = (String)db1.get(property);
-		
+		String s1 = (String) db1.get(property);
+
 		DynaBean db2 = new WrapDynaBean(o2);
-		String s2 = (String)db2.get(property);
-	    
-	    s1 = (s1 == null)? "" : s1;
-	    s2 = (s2 == null)? "" : s2;
-	    
-	    if(s1.equals(s2)) {
-	    	return 0;
-	    } 
-	    return s1.compareTo(s2);
-    }
+		String s2 = (String) db2.get(property);
+
+		if(s1 == null && s2 == null) {
+			return 0;
+		}
+		if(s1 == null && s2 != null) {
+			return -1;
+		}
+		if(s1 != null && s2 == null) {
+			return 1;
+		}
+
+		if (s1.equals(s2)) {
+			return 0;
+		}
+		return s1.compareTo(s2);
+	}
 }

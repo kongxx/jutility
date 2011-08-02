@@ -71,19 +71,13 @@ public class TestSorter {
 	@Test
 	public void testSortListOfTStringArraySortOrder() {
 		List<MySchedule> list = new ArrayList<MySchedule>();
-		list.add(new MySchedule("a1", "2007-01-01", "01:01:01", "2007-01-01",
-				"01:01:01"));
-		list.add(new MySchedule("a2", "2007-01-01", "01:01:02", "2007-01-02",
-				"01:01:03"));
-		list.add(new MySchedule("a3", "2007-01-01", "01:01:03", "2007-01-02",
-				"01:01:02"));
-		list.add(new MySchedule("a4", "2007-01-01", "01:01:04", "2007-01-02",
-				"01:01:04"));
-		list.add(new MySchedule("a5", "2007-01-01", "01:01:05", "2007-01-03",
-				"01:01:01"));
+		list.add(new MySchedule("a1", "2007-01-01", "01:01:01", "2007-01-01", "01:01:01"));
+		list.add(new MySchedule("a2", "2007-01-01", "01:01:02", "2007-01-02", "01:01:03"));
+		list.add(new MySchedule("a3", "2007-01-01", "01:01:03", "2007-01-02", "01:01:02"));
+		list.add(new MySchedule("a4", "2007-01-01", "01:01:04", "2007-01-02", "01:01:04"));
+		list.add(new MySchedule("a5", "2007-01-01", "01:01:05", "2007-01-03", "01:01:01"));
 
-		sorter.sort(list, new String[] { "startDate", "startTime" },
-				SortOrder.ASC);
+		sorter.sort(list, new String[] { "startDate", "startTime" }, SortOrder.ASC);
 		assertEquals(5, list.size());
 		assertEquals("a1", list.get(0).getName());
 		assertEquals("a2", list.get(1).getName());
@@ -91,8 +85,7 @@ public class TestSorter {
 		assertEquals("a4", list.get(3).getName());
 		assertEquals("a5", list.get(4).getName());
 
-		sorter.sort(list, new String[] { "startDate", "startTime" },
-				SortOrder.DESC);
+		sorter.sort(list, new String[] { "startDate", "startTime" }, SortOrder.DESC);
 		assertEquals(5, list.size());
 		assertEquals("a5", list.get(0).getName());
 		assertEquals("a4", list.get(1).getName());
@@ -108,9 +101,7 @@ public class TestSorter {
 		assertEquals("a4", list.get(3).getName());
 		assertEquals("a5", list.get(4).getName());
 
-		sorter
-				.sort(list, new String[] { "endDate", "endTime" },
-						SortOrder.DESC);
+		sorter.sort(list, new String[] { "endDate", "endTime" }, SortOrder.DESC);
 		assertEquals(5, list.size());
 		assertEquals("a5", list.get(0).getName());
 		assertEquals("a4", list.get(1).getName());
@@ -128,8 +119,7 @@ public class TestSorter {
 	public void testSortListOfTStringSortOrder() {
 		List<MySchedule> list = new ArrayList<MySchedule>();
 		for (int i = 1; i <= 5; i++) {
-			list.add(new MySchedule("a" + i, "2007-01-01", "01:01:01",
-					"2007-01-01", "01:01:01"));
+			list.add(new MySchedule("a" + i, "2007-01-01", "01:01:01", "2007-01-01", "01:01:01"));
 		}
 
 		sorter.sort(list, "name", SortOrder.ASC);

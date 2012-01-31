@@ -4,7 +4,7 @@ import java.io.*;
 
 public class CloneUtil {
 	public static Object clone(Object obj) {
-		Object anotherObj = null;
+		Object newObj = null;
 		byte[] bytes;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ObjectOutputStream oos = null;
@@ -27,7 +27,7 @@ public class CloneUtil {
 		ObjectInputStream ois = null;
 		try {
 			ois = new ObjectInputStream(bais);
-			anotherObj = ois.readObject();
+			newObj = ois.readObject();
 		} catch(IOException ex) {
 			throw new RuntimeException(ex.getMessage(), ex);
 		} catch(ClassNotFoundException ex) {
@@ -41,6 +41,6 @@ public class CloneUtil {
 				}
 			}
 		}
-		return anotherObj;
+		return newObj;
 	}
 }
